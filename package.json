@@ -1,0 +1,12 @@
+{
+  "name": "grpc-webpack-plugin",
+  "version": "0.0.1",
+  "main": "index.js",
+  "author": "yk",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "webpack": "^4.41.0",
+    "webpack-cli": "^3.3.9"
+  }
+}
