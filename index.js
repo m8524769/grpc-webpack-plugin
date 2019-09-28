@@ -1,11 +1,10 @@
 'use strict';
 
-class GrpcPlugin {
+class GrpcWebPlugin {
   constructor(options) {
     const userOptions = options || {};
 
     const defaultOptions = {
-      protoPath: ".",
       importStyle: "closure",
       mode: "grpcwebtext",
       outDir: "."
@@ -15,35 +14,32 @@ class GrpcPlugin {
   }
 
   apply(compiler) {
-    compiler.hooks.compilation.tap('GrpcPlugin', compilation => {
-        const cp = require("child_process");
-        return new Promise((resolve, reject) => {
-          const executedCommand = cp.spawn(
-            "protoc",
-            [
-              "-h"
-            ],
-            {
-              stdio: "inherit",
-              shell: true
-            }
-          );
+    compiler.hooks.compilation.tap('GrpcWebPlugin', compilation => {
+      const { options } = this;
+      let protocOptions = [
+        `-I${options.protoPath}`,
+        ...options.protoFiles,
+      ];
 
-          executedCommand.on("error", error => {
-            reject(error);
-          });
+      if (options.outputType === 'grpc-web') {
+        protocOptions.push(
+          `--grpc-web_out=import_style=${options.importStyle},mode=${options.mode}:${options.outDir}`
+        );
+      } else if (options.outputType === 'js') {
+        protocOptions.push(
+          `--js_out=import_style=${options.importStyle}:${options.outDir}`
+        );
+      }
 
-          executedCommand.on("exit", code => {
-            if (code === 0) {
-              resolve();
-            } else {
-              reject();
-            }
-          });
-        });
-      },
-    )
+      const cp = require("child_process");
+      cp.spawn("protoc", protocOptions, {
+        stdio: "inherit",
+        shell: true
+      }).on("error", error => {
+        console.error(error);
+      });
+    })
   }
 }
 
-module.exports = GrpcPlugin;
+module.exports = GrpcWebPlugin;

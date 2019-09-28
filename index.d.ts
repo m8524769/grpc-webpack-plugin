@@ -1,26 +1,31 @@
-export type ImportStyleType =
-  | "closure"
-  | "commonjs"
-  | "commonjs+dts"
-  | "typescript";
+declare namespace GrpcWebPlugin {
+  type OutputType =
+    | "js"
+    | "grpc-web";
 
-export type WireFormatModeType =
-  | "grpcwebtext"
-  | "grpcweb";
+  type ImportStyleType =
+    | "closure"
+    | "commonjs"
+    | "commonjs+dts"
+    | "typescript";
 
-declare namespace GrpcPlugin {
+  type WireFormatModeType =
+    | "grpcwebtext"
+    | "grpcweb";
+
   interface Options {
-    protoPath?: string;
-    protoFile?: string | string[];
+    protoPath: string;
+    protoFiles: string[];
+    outputType: OutputType;
     importStyle?: ImportStyleType;
     mode?: WireFormatModeType;
     outDir?: string;
   }
 }
 
-declare class GrpcPlugin {
-  constructor(options?: GrpcPlugin.Options);
+declare class GrpcWebPlugin {
+  constructor(options?: GrpcWebPlugin.Options);
   apply(compiler: Compiler): void;
 }
 
-export = GrpcPlugin;
+export = GrpcWebPlugin;
