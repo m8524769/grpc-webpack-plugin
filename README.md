@@ -29,7 +29,7 @@ yarn add --dev grpc-webpack-plugin
 const GrpcWebPlugin = require('grpc-webpack-plugin');
 
 const path = require('path');
-const DIR = path.resolve(__dirname, './proto');
+const DIR = path.resolve(__dirname, './protos');
 const OUT_DIR = path.resolve(__dirname, './protobuf');
 
 module.exports = {
@@ -65,10 +65,12 @@ module.exports = {
 |`mode`|`'grpcwebtext' \| 'grpcweb'`, see [Wire Format Mode](https://github.com/grpc/grpc-web#wire-format-mode)|`{String}`|`'grpcwebtext'`|
 |`outDir`| |`{String}`|`'.'`|
 |`extra`|Other configuration options, see `protoc -h`|`{Array.<string>}`|`[]`|
+|`watch`|Watch `.proto` files and recompile whenever they change (Need to [turn on webpack watch mode](https://webpack.js.org/configuration/watch/#watch) first)|`{Boolean}`|`true`|
 
 **Notice:** `commonjs+dts` and `typescript` importStyle only works with `grpc-web` outputType.
+
+**Notice:** Delete generated code won't trigger the recompilation of `.proto` files.
 
 <h2 align="center">Todo</h2>
 
 - [ ] Download `protoc` and `protoc-gen-grpc-web` automatically with specific version.
-- [ ] Watch `.proto` files and recompile them while they change.

@@ -1,8 +1,14 @@
 {
   "name": "grpc-webpack-plugin",
-  "version": "0.1.0",
+  "version": "0.2.70",
+  "description": "A webpack plugin that compiles .proto files automatically with gRPC-Web.",
   "main": "index.js",
   "author": "yk",
+  "repository": "github:m8524769/grpc-webpack-plugin",
+  "bugs": {
+    "url": "https://github.com/m8524769/grpc-webpack-plugin/issues",
+    "email": "m8524769@gmail.com"
+  },
   "license": "MIT",
   "keywords": [
     "webpack",
@@ -14,7 +20,9 @@
     "node": ">=10.12.0"
   },
   "dependencies": {},
-  "devDependencies": {},
+  "devDependencies": {
+    "command-exists": "^1.2.8"
+  },
   "peerDependencies": {
     "grpc-web": "^1.0.0",
     "webpack": "^4.0.0"

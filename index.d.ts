@@ -11,6 +11,7 @@ declare namespace GrpcWebPlugin {
     mode?: WireFormatModeType;
     outDir?: string;
     extra?: string[];
+    watch?: boolean;
   }
 }
 
