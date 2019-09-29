@@ -11,6 +11,8 @@
 
 <h2 align="center">Install</h2>
 
+**Notice:** Make sure you have [`protoc`](https://github.com/protocolbuffers/protobuf/releases) and [`protoc-gen-grpc-web`](https://github.com/grpc/grpc-web/releases) installed on your OS.
+
 ```shell
 yarn add --dev grpc-webpack-plugin
 ```
@@ -59,3 +61,7 @@ module.exports = {
 |`mode`|`'grpcwebtext' \| 'grpcweb'`|`{String}`|`'grpcwebtext'`|
 |`outDir`| |`{String}`|`'.'`|
 |`extra`| |`{Array.<string>}`|`[]`|
+
+<h2 align="center">Todo</h2>
+
+- [ ] Download `protoc` and `protoc-gen-grpc-web` automatically with specific version.

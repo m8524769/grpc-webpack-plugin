@@ -5,13 +5,13 @@ class GrpcWebPlugin {
     const userOptions = options || {};
 
     const defaultOptions = {
-      importStyle: "closure",
-      mode: "grpcwebtext",
-      outDir: ".",
+      importStyle: 'closure',
+      mode: 'grpcwebtext',
+      outDir: '.',
       extra: [],
       // TODO
-      protocVersion: "latest",
-      grpcWebVersion: "latest",
+      protocVersion: 'latest',
+      grpcWebVersion: 'latest',
     };
 
     this.options = Object.assign(defaultOptions, userOptions);
@@ -36,13 +36,13 @@ class GrpcWebPlugin {
         );
       }
 
-      const cp = require("child_process");
-      cp.spawn("protoc", protocOptions, {
-        stdio: "inherit",
+      const cp = require('child_process');
+      cp.spawn('protoc', protocOptions, {
+        stdio: 'inherit',
         shell: true
       }).on('exit', code => {
         if (code !== 0) {
-          throw new Error('Please check GrpcWebPlugin options.');
+          throw new Error('Please make sure you have protoc installed and check GrpcWebPlugin options.');
         }
       });
     })
