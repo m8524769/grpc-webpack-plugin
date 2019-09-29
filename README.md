@@ -54,8 +54,8 @@ module.exports = {
 |---|---|---|---|
 |`protoPath`| |`{String}`| |
 |`protoFiles`| |`{Array.<string>}`| |
-|`outputType`|`'js' | 'grpc-web'`|`{String}`| |
-|`importStyle`|`'closure' | 'commonjs' | 'commonjs+dts' | 'typescript'`|`{String}`|`'closure'`|
-|`mode`|`'grpcwebtext' | 'grpcweb'`|`{String}`|`'grpcwebtext'`|
+|`outputType`|`'js' \| 'grpc-web'`|`{String}`| |
+|`importStyle`|`'closure' \| 'commonjs' \| 'commonjs+dts' \| 'typescript'`|`{String}`|`'closure'`|
+|`mode`|`'grpcwebtext' \| 'grpcweb'`|`{String}`|`'grpcwebtext'`|
 |`outDir`| |`{String}`|`'.'`|
 |`extra`| |`{Array.<string>}`|`[]`|
