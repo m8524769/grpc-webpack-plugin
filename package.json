@@ -13,6 +13,7 @@
   "dependencies": {},
   "devDependencies": {},
   "peerDependencies": {
+    "grpc-web": "^1.0.0",
     "webpack": "^4.0.0"
   }
 }
