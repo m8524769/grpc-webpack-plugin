@@ -10,6 +10,9 @@
     "grpc-web",
     "protoc"
   ],
+  "engines": {
+    "node": ">=10.12.0"
+  },
   "dependencies": {},
   "devDependencies": {},
   "peerDependencies": {

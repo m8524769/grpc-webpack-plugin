@@ -1,17 +1,7 @@
 declare namespace GrpcWebPlugin {
-  type OutputType =
-    | 'js'
-    | 'grpc-web';
-
-  type ImportStyleType =
-    | 'closure'
-    | 'commonjs'
-    | 'commonjs+dts'
-    | 'typescript';
-
-  type WireFormatModeType =
-    | 'grpcwebtext'
-    | 'grpcweb';
+  type OutputType = 'js' | 'grpc-web';
+  type ImportStyleType = 'closure' | 'commonjs' | 'commonjs+dts' | 'typescript';
+  type WireFormatModeType = 'grpcwebtext' | 'grpcweb';
 
   interface Options {
     protoPath: string;
@@ -25,7 +15,7 @@ declare namespace GrpcWebPlugin {
 }
 
 declare class GrpcWebPlugin {
-  constructor(options?: GrpcWebPlugin.Options);
+  constructor(options: GrpcWebPlugin.Options);
   apply(compiler: Compiler): void;
 }
 

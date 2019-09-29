@@ -33,16 +33,23 @@ class GrpcWebPlugin {
         );
       }
 
+      const fs = require('fs');
+      if (!fs.existsSync(options.outDir)) {
+        fs.mkdirSync(options.outDir, { recursive: true });
+      }
+
       const cp = require('child_process');
       cp.spawn('protoc', protocOptions, {
         stdio: 'inherit',
-        shell: true
+        shell: true,
       }).on('exit', code => {
         if (code !== 0) {
-          throw new Error('Please make sure you have protoc installed and check GrpcWebPlugin options.');
+          throw new Error(
+            'Please make sure you have protoc installed and check GrpcWebPlugin options.'
+          );
         }
       });
-    })
+    });
   }
 }
 

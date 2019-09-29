@@ -14,6 +14,10 @@
 **Notice:** Make sure you have [`protoc`](https://github.com/protocolbuffers/protobuf/releases) and [`protoc-gen-grpc-web`](https://github.com/grpc/grpc-web/releases) installed on your OS.
 
 ```shell
+npm i --save-dev grpc-webpack-plugin
+```
+
+```shell
 yarn add --dev grpc-webpack-plugin
 ```
 
@@ -53,7 +57,7 @@ module.exports = {
 <h2 align="center">Options</h2>
 
 |Name|Description|Type|Default|
-|---|---|---|---|
+|:--:|-----------|:--:|:-----:|
 |`protoPath`| |`{String}`| |
 |`protoFiles`| |`{Array.<string>}`| |
 |`outputType`|`'js' \| 'grpc-web'`|`{String}`| |
