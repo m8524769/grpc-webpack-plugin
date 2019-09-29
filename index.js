@@ -9,9 +9,6 @@ class GrpcWebPlugin {
       mode: 'grpcwebtext',
       outDir: '.',
       extra: [],
-      // TODO
-      protocVersion: 'latest',
-      grpcWebVersion: 'latest',
     };
 
     this.options = Object.assign(defaultOptions, userOptions);

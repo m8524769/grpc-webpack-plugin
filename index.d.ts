@@ -21,9 +21,6 @@ declare namespace GrpcWebPlugin {
     mode?: WireFormatModeType;
     outDir?: string;
     extra?: string[];
-    // TODO
-    protocVersion?: string;
-    grpcWebVersion?: string;
   }
 }
 

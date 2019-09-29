@@ -3,7 +3,7 @@
     <img width="200" height="200"
       src="https://webpack.js.org/assets/icon-square-big.svg">
   </a>
-  <h1>Grpc Webpack Plugin</h1>
+  <h1>gRPC Webpack Plugin</h1>
   <p>
     A <a href="https://webpack.js.org">webpack</a> plugin that compiles <code>.proto</code> files automatically with <a href="https://github.com/grpc/grpc-web">gRPC-Web</a>.
   </p>
@@ -57,10 +57,10 @@ module.exports = {
 |`protoPath`| |`{String}`| |
 |`protoFiles`| |`{Array.<string>}`| |
 |`outputType`|`'js' \| 'grpc-web'`|`{String}`| |
-|`importStyle`|`'closure' \| 'commonjs' \| 'commonjs+dts' \| 'typescript'`|`{String}`|`'closure'`|
-|`mode`|`'grpcwebtext' \| 'grpcweb'`|`{String}`|`'grpcwebtext'`|
+|`importStyle`|`'closure' \| 'commonjs' \| 'commonjs+dts' \| 'typescript'`, see [Import Style](https://github.com/grpc/grpc-web#import-style)|`{String}`|`'closure'`|
+|`mode`|`'grpcwebtext' \| 'grpcweb'`, see [Wire Format Mode](https://github.com/grpc/grpc-web#wire-format-mode)|`{String}`|`'grpcwebtext'`|
 |`outDir`| |`{String}`|`'.'`|
-|`extra`| |`{Array.<string>}`|`[]`|
+|`extra`|Other configuration options|`{Array.<string>}`|`[]`|
 
 <h2 align="center">Todo</h2>
 
