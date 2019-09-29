@@ -64,8 +64,11 @@ module.exports = {
 |`importStyle`|`'closure' \| 'commonjs' \| 'commonjs+dts' \| 'typescript'`, see [Import Style](https://github.com/grpc/grpc-web#import-style)|`{String}`|`'closure'`|
 |`mode`|`'grpcwebtext' \| 'grpcweb'`, see [Wire Format Mode](https://github.com/grpc/grpc-web#wire-format-mode)|`{String}`|`'grpcwebtext'`|
 |`outDir`| |`{String}`|`'.'`|
-|`extra`|Other configuration options|`{Array.<string>}`|`[]`|
+|`extra`|Other configuration options, see `protoc -h`|`{Array.<string>}`|`[]`|
+
+**Notice:** `commonjs+dts` and `typescript` importStyle only works with `grpc-web` outputType.
 
 <h2 align="center">Todo</h2>
 
 - [ ] Download `protoc` and `protoc-gen-grpc-web` automatically with specific version.
+- [ ] Watch `.proto` files and recompile them while they change.

@@ -15,7 +15,7 @@ class GrpcWebPlugin {
   }
 
   apply(compiler) {
-    compiler.hooks.compilation.tap('GrpcWebPlugin', compilation => {
+    compiler.hooks.afterEnvironment.tap('GrpcWebPlugin', () => {
       const { options } = this;
       let protocOptions = [
         `-I${options.protoPath}`,
