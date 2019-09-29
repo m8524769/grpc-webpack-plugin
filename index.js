@@ -7,7 +7,11 @@ class GrpcWebPlugin {
     const defaultOptions = {
       importStyle: "closure",
       mode: "grpcwebtext",
-      outDir: "."
+      outDir: ".",
+      extra: [],
+      // TODO
+      protocVersion: "latest",
+      grpcWebVersion: "latest",
     };
 
     this.options = Object.assign(defaultOptions, userOptions);
@@ -19,6 +23,7 @@ class GrpcWebPlugin {
       let protocOptions = [
         `-I${options.protoPath}`,
         ...options.protoFiles,
+        ...options.extra,
       ];
 
       if (options.outputType === 'grpc-web') {
@@ -35,8 +40,10 @@ class GrpcWebPlugin {
       cp.spawn("protoc", protocOptions, {
         stdio: "inherit",
         shell: true
-      }).on("error", error => {
-        console.error(error);
+      }).on('exit', code => {
+        if (code !== 0) {
+          throw new Error('Please check GrpcWebPlugin options.');
+        }
       });
     })
   }

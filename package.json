@@ -4,9 +4,15 @@
   "main": "index.js",
   "author": "yk",
   "license": "MIT",
+  "keywords": [
+    "webpack",
+    "plugin",
+    "grpc-web",
+    "protoc"
+  ],
   "dependencies": {},
-  "devDependencies": {
-    "webpack": "^4.41.0",
-    "webpack-cli": "^3.3.9"
+  "devDependencies": {},
+  "peerDependencies": {
+    "webpack": "^4.0.0"
   }
 }

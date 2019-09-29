@@ -20,6 +20,10 @@ declare namespace GrpcWebPlugin {
     importStyle?: ImportStyleType;
     mode?: WireFormatModeType;
     outDir?: string;
+    extra?: string[];
+    // TODO
+    protocVersion?: string;
+    grpcWebVersion?: string;
   }
 }
 
