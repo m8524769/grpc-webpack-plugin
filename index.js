@@ -21,30 +21,30 @@ class GrpcWebPlugin {
   }
 
   apply(compiler) {
+    ['protoc', 'protoc-gen-grpc-web'].map(prog => {
+      if (!commandExists(prog)) {
+        throw new Error(`${prog} is not installed`);
+      }
+    });
+
     const { options } = this;
 
-    let protocOptions = [
-      `-I${options.protoPath}`,
-      ...options.protoFiles,
-      ...options.extra,
-    ];
-
-    if (options.outputType === 'grpc-web') {
-      protocOptions.push(
-        `--grpc-web_out=import_style=${options.importStyle},mode=${options.mode}:${options.outDir}`
-      );
-    } else if (options.outputType === 'js') {
-      protocOptions.push(
-        `--js_out=import_style=${options.importStyle}:${options.outDir}`
-      );
-    }
-
     compiler.hooks.afterEnvironment.tap('GrpcWebPlugin', () => {
-      ['protoc', 'protoc-gen-grpc-web'].map(prog => {
-        if (!commandExists(prog)) {
-          throw new Error(`${prog} is not installed`);
-        }
-      });
+      let protocOptions = [
+        `-I${options.protoPath}`,
+        ...options.protoFiles,
+        ...options.extra,
+      ];
+
+      if (options.outputType === 'grpc-web') {
+        protocOptions.push(
+          `--grpc-web_out=import_style=${options.importStyle},mode=${options.mode}:${options.outDir}`
+        );
+      } else if (options.outputType === 'js') {
+        protocOptions.push(
+          `--js_out=import_style=${options.importStyle}:${options.outDir}`
+        );
+      }
 
       if (!fs.existsSync(options.outDir)) {
         fs.mkdirSync(options.outDir, { recursive: true });
@@ -72,12 +72,27 @@ class GrpcWebPlugin {
       });
 
       compiler.hooks.watchRun.tapAsync('GrpcWebPlugin', (compiler, callback) => {
-        const isProtoChanged = (
-          Object.keys(compiler.watchFileSystem.watcher.mtimes)
-            .findIndex(filename => filename.endsWith('.proto')) !== -1
-        );
+        const changedProtos = Object.keys(
+          compiler.watchFileSystem.watcher.mtimes
+        ).filter(filename => filename.endsWith('.proto'));
 
-        if (isProtoChanged) {
+        if (changedProtos.length !== 0) {
+          let protocOptions = [
+            `-I${options.protoPath}`,
+            ...changedProtos,
+            ...options.extra,
+          ];
+
+          if (options.outputType === 'grpc-web') {
+            protocOptions.push(
+              `--grpc-web_out=import_style=${options.importStyle},mode=${options.mode}:${options.outDir}`
+            );
+          } else if (options.outputType === 'js') {
+            protocOptions.push(
+              `--js_out=import_style=${options.importStyle}:${options.outDir}`
+            );
+          }
+
           if (!fs.existsSync(options.outDir)) {
             fs.mkdirSync(options.outDir, { recursive: true });
           }
