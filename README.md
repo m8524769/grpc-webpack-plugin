@@ -72,3 +72,4 @@ module.exports = {
 <h2 align="center">Todo</h2>
 
 - [ ] Download `protoc` and `protoc-gen-grpc-web` automatically with specific version.
+- [ ] Support Webpack 5

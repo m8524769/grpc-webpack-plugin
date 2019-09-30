@@ -6,7 +6,7 @@ const fs = require('fs');
 const path = require('path');
 
 /** @typedef {import("./index").Options} GrpcWebOptions */
-/** @typedef {import("webpack/lib/Compiler.js")} Compiler */
+/** @typedef {import("webpack/lib/Compiler.js")} WebpackCompiler */
 
 class GrpcWebPlugin {
   /**
@@ -31,7 +31,7 @@ class GrpcWebPlugin {
 
   /**
    * Apply the plugin
-   * @param {Compiler} compiler Webpack Compiler
+   * @param {WebpackCompiler} compiler Webpack Compiler
    * @returns {void}
    */
   apply(compiler) {
@@ -50,6 +50,7 @@ class GrpcWebPlugin {
       outputOption = `--js_out=import_style=${options.importStyle}:${options.outDir}`;
     }
 
+    // Compile all .proto files during initialization
     compiler.hooks.afterEnvironment.tap('GrpcWebPlugin', () => {
       if (!fs.existsSync(options.outDir)) {
         fs.mkdirSync(options.outDir, { recursive: true });
@@ -68,6 +69,7 @@ class GrpcWebPlugin {
     });
 
     if (options.watch) {
+      // Add protos to fileDependencies
       compiler.hooks.afterCompile.tap('GrpcWebPlugin', compilation => {
         options.protoFiles.forEach(protoFile => {
           compilation.fileDependencies.add(
@@ -76,6 +78,7 @@ class GrpcWebPlugin {
         });
       });
 
+      // Recompile .proto files whenever they change
       compiler.hooks.watchRun.tapAsync('GrpcWebPlugin', (compiler, callback) => {
         const changedProtos = Object.keys(
           compiler.watchFileSystem.watcher.mtimes
