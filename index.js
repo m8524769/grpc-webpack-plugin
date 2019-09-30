@@ -47,14 +47,9 @@ class GrpcWebPlugin {
         ...options.extra,
         outputOption,
       ], {
-        stdio: 'inherit',
         shell: true,
-      }).on('exit', code => {
-        if (code !== 0) {
-          throw new Error(
-            'Please check GrpcWebPlugin options and proto syntax.'
-          );
-        }
+      }).stderr.on('data', error => {
+        throw new Error(error.toString());
       });
     });
 
@@ -83,20 +78,19 @@ class GrpcWebPlugin {
             ...options.extra,
             outputOption,
           ], {
-            stdio: 'inherit',
             shell: true,
           }).on('exit', code => {
             if (code !== 0) {
-              return callback(
-                `Invalid syntax in ${changedProtos}, recompilation failed.`
-              );
+              return callback(`Compilation failed in ${changedProtos}.`);
             } else {
               return callback();
             }
+          }).stderr.on('data', error => {
+            return callback(`Error: ${error}`);
           });
         }
         return callback();
-      })
+      });
     }
   }
 }
