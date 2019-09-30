@@ -69,8 +69,6 @@ module.exports = {
 
 **Notice:** `commonjs+dts` and `typescript` importStyle only works with `grpc-web` outputType.
 
-**Notice:** Delete generated code won't trigger the recompilation of `.proto` files.
-
 <h2 align="center">Todo</h2>
 
 - [ ] Download `protoc` and `protoc-gen-grpc-web` automatically with specific version.

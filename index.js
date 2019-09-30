@@ -29,28 +29,24 @@ class GrpcWebPlugin {
 
     const { options } = this;
 
+    let outputOption = '';
+    if (options.outputType === 'grpc-web') {
+      outputOption = `--grpc-web_out=import_style=${options.importStyle},mode=${options.mode}:${options.outDir}`;
+    } else if (options.outputType === 'js') {
+      outputOption = `--js_out=import_style=${options.importStyle}:${options.outDir}`;
+    }
+
     compiler.hooks.afterEnvironment.tap('GrpcWebPlugin', () => {
-      let protocOptions = [
-        `-I${options.protoPath}`,
-        ...options.protoFiles,
-        ...options.extra,
-      ];
-
-      if (options.outputType === 'grpc-web') {
-        protocOptions.push(
-          `--grpc-web_out=import_style=${options.importStyle},mode=${options.mode}:${options.outDir}`
-        );
-      } else if (options.outputType === 'js') {
-        protocOptions.push(
-          `--js_out=import_style=${options.importStyle}:${options.outDir}`
-        );
-      }
-
       if (!fs.existsSync(options.outDir)) {
         fs.mkdirSync(options.outDir, { recursive: true });
       }
 
-      cp.spawn('protoc', protocOptions, {
+      cp.spawn('protoc', [
+        `-I${options.protoPath}`,
+        ...options.protoFiles,
+        ...options.extra,
+        outputOption,
+      ], {
         stdio: 'inherit',
         shell: true,
       }).on('exit', code => {
@@ -77,33 +73,22 @@ class GrpcWebPlugin {
         ).filter(filename => filename.endsWith('.proto'));
 
         if (changedProtos.length !== 0) {
-          let protocOptions = [
-            `-I${options.protoPath}`,
-            ...changedProtos,
-            ...options.extra,
-          ];
-
-          if (options.outputType === 'grpc-web') {
-            protocOptions.push(
-              `--grpc-web_out=import_style=${options.importStyle},mode=${options.mode}:${options.outDir}`
-            );
-          } else if (options.outputType === 'js') {
-            protocOptions.push(
-              `--js_out=import_style=${options.importStyle}:${options.outDir}`
-            );
-          }
-
           if (!fs.existsSync(options.outDir)) {
             fs.mkdirSync(options.outDir, { recursive: true });
           }
 
-          cp.spawn('protoc', protocOptions, {
+          cp.spawn('protoc', [
+            `-I${options.protoPath}`,
+            ...changedProtos,
+            ...options.extra,
+            outputOption,
+          ], {
             stdio: 'inherit',
             shell: true,
           }).on('exit', code => {
             if (code !== 0) {
-              throw new Error(
-                'Please check GrpcWebPlugin options and proto syntax.'
+              return callback(
+                `Invalid syntax in ${changedProtos}, recompilation failed.`
               );
             } else {
               return callback();
