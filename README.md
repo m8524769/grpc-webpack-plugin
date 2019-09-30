@@ -35,6 +35,7 @@ const OUT_DIR = path.resolve(__dirname, './protobuf');
 module.exports = {
   mode: 'development',
   plugins: [
+    // Proto messages
     new GrpcWebPlugin({
       protoPath: DIR,
       protoFiles: ['echo.proto'],
@@ -42,6 +43,7 @@ module.exports = {
       importStyle: 'commonjs',
       outDir: OUT_DIR,
     }),
+    // Service client stub
     new GrpcWebPlugin({
       protoPath: DIR,
       protoFiles: ['echo.proto'],
@@ -58,9 +60,9 @@ module.exports = {
 
 |Name|Description|Type|Default|
 |:--:|-----------|:--:|:-----:|
-|`protoPath`|E.g. `'./protos'`|`{String}`| |
-|`protoFiles`|E.g. `['foo.proto', 'bar.proto']`|`{Array.<string>}`| |
-|`outputType`|`'js' \| 'grpc-web'`|`{String}`| |
+|`protoPath`|Required, e.g. `'./protos'`|`{String}`| |
+|`protoFiles`|Required, e.g. `['foo.proto', 'bar.proto']`|`{Array.<string>}`| |
+|`outputType`|Required, `'js' \| 'grpc-web'`|`{String}`| |
 |`importStyle`|`'closure' \| 'commonjs' \| 'commonjs+dts' \| 'typescript'`, see [Import Style](https://github.com/grpc/grpc-web#import-style)|`{String}`|`'closure'`|
 |`mode`|`'grpcwebtext' \| 'grpcweb'`, see [Wire Format Mode](https://github.com/grpc/grpc-web#wire-format-mode)|`{String}`|`'grpcwebtext'`|
 |`outDir`| |`{String}`|`'.'`|
@@ -73,4 +75,5 @@ module.exports = {
 <h2 align="center">Todo</h2>
 
 - [ ] Download `protoc` and `protoc-gen-grpc-web` automatically with specific version
+- [ ] Add some hooks
 - [ ] Support Webpack 5
