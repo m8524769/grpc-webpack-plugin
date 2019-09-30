@@ -65,7 +65,8 @@ module.exports = {
 |`mode`|`'grpcwebtext' \| 'grpcweb'`, see [Wire Format Mode](https://github.com/grpc/grpc-web#wire-format-mode)|`{String}`|`'grpcwebtext'`|
 |`outDir`| |`{String}`|`'.'`|
 |`extra`|Other configuration options, see `protoc -h`|`{Array.<string>}`|`[]`|
-|`watch`|Watch `.proto` files and recompile whenever they change (Need to [turn on webpack watch mode](https://webpack.js.org/configuration/watch/#watch) first)|`{Boolean}`|`true`|
+|`synchronize`|Sync your generated code with `.proto` files each time you run webpack|`{Boolean}`|`true`|
+|`watch`|Watch `.proto` files and recompile whenever they change. Only works if `synchronize` is `true`. (Need to [turn on webpack watch mode](https://webpack.js.org/configuration/watch/#watch) first)|`{Boolean}`|`true`|
 
 **Notice:** `commonjs+dts` and `typescript` importStyle only works with `grpc-web` outputType.
 

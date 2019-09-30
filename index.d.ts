@@ -36,7 +36,13 @@ declare namespace GrpcWebPlugin {
      */
     extra?: string[];
     /**
+     * Sync your generated codes with `.proto` files each time you run webpack.
+     * Default: `true`.
+     */
+    synchronize?: boolean;
+    /**
      * Watch `.proto` files and recompile whenever they change.
+     * Only works if `synchronize` is `true`.
      * Default: `true`.
      */
     watch?: boolean;

@@ -22,6 +22,7 @@ class GrpcWebPlugin {
       mode: 'grpcwebtext',
       outDir: '.',
       extra: [],
+      synchronize: true,
       watch: true,
     };
 
@@ -51,24 +52,26 @@ class GrpcWebPlugin {
     }
 
     // Compile all .proto files during initialization
-    compiler.hooks.afterEnvironment.tap('GrpcWebPlugin', () => {
-      if (!fs.existsSync(options.outDir)) {
-        fs.mkdirSync(options.outDir, { recursive: true });
-      }
+    if (options.synchronize) {
+      compiler.hooks.afterEnvironment.tap('GrpcWebPlugin', () => {
+        if (!fs.existsSync(options.outDir)) {
+          fs.mkdirSync(options.outDir, { recursive: true });
+        }
 
-      cp.spawn('protoc', [
-        `-I${options.protoPath}`,
-        ...options.protoFiles,
-        ...options.extra,
-        outputOption,
-      ], {
-        shell: true,
-      }).stderr.on('data', error => {
-        throw new Error(error.toString());
+        cp.spawn('protoc', [
+          `-I${options.protoPath}`,
+          ...options.protoFiles,
+          ...options.extra,
+          outputOption,
+        ], {
+          shell: true,
+        }).stderr.on('data', error => {
+          throw new Error(error.toString());
+        });
       });
-    });
+    }
 
-    if (options.watch) {
+    if (options.watch && options.synchronize) {
       // Add protos to fileDependencies
       compiler.hooks.afterCompile.tap('GrpcWebPlugin', compilation => {
         options.protoFiles.forEach(protoFile => {
