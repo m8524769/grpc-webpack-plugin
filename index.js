@@ -5,10 +5,18 @@ const cp = require('child_process');
 const fs = require('fs');
 const path = require('path');
 
+/** @typedef {import("./index").Options} GrpcWebOptions */
+/** @typedef {import("webpack/lib/Compiler.js")} Compiler */
+
 class GrpcWebPlugin {
+  /**
+   * @param {GrpcWebOptions} options GrpcWebPlugin options
+   */
   constructor(options) {
+    /** @type {GrpcWebOptions} */
     const userOptions = options || {};
 
+    /** @type {GrpcWebOptions} */
     const defaultOptions = {
       importStyle: 'closure',
       mode: 'grpcwebtext',
@@ -17,9 +25,15 @@ class GrpcWebPlugin {
       watch: true,
     };
 
+    /** @type {GrpcWebOptions} */
     this.options = Object.assign(defaultOptions, userOptions);
   }
 
+  /**
+   * Apply the plugin
+   * @param {Compiler} compiler Webpack Compiler
+   * @returns {void}
+   */
   apply(compiler) {
     ['protoc', 'protoc-gen-grpc-web'].map(prog => {
       if (!commandExists(prog)) {

@@ -4,13 +4,41 @@ declare namespace GrpcWebPlugin {
   type WireFormatModeType = 'grpcwebtext' | 'grpcweb';
 
   interface Options {
+    /**
+     * E.g. `'./protos'`
+     */
     protoPath: string;
+    /**
+     * E.g. `['foo.proto', 'bar.proto']`.
+     */
     protoFiles: string[];
+    /**
+     * `'js'` or `'grpc-web'`.
+     */
     outputType: OutputType;
+    /**
+     * See [Import Style](https://github.com/grpc/grpc-web#import-style).
+     * Default: `closure`.
+     */
     importStyle?: ImportStyleType;
+    /**
+     * See [Wire Format Mode](https://github.com/grpc/grpc-web#wire-format-mode).
+     * Default: `grpcwebtext`.
+     */
     mode?: WireFormatModeType;
+    /**
+     * Default: `.`.
+     */
     outDir?: string;
+    /**
+     * Other configuration options, see `protoc -h`.
+     * Default: `[]`.
+     */
     extra?: string[];
+    /**
+     * Watch `.proto` files and recompile whenever they change.
+     * Default: `true`.
+     */
     watch?: boolean;
   }
 }
