@@ -58,19 +58,19 @@ module.exports = {
 
 |Name|Description|Type|Default|
 |:--:|-----------|:--:|:-----:|
-|`protoPath`| |`{String}`| |
-|`protoFiles`| |`{Array.<string>}`| |
+|`protoPath`|E.g. `'./protos'`|`{String}`| |
+|`protoFiles`|E.g. `['foo.proto', 'bar.proto']`|`{Array.<string>}`| |
 |`outputType`|`'js' \| 'grpc-web'`|`{String}`| |
 |`importStyle`|`'closure' \| 'commonjs' \| 'commonjs+dts' \| 'typescript'`, see [Import Style](https://github.com/grpc/grpc-web#import-style)|`{String}`|`'closure'`|
 |`mode`|`'grpcwebtext' \| 'grpcweb'`, see [Wire Format Mode](https://github.com/grpc/grpc-web#wire-format-mode)|`{String}`|`'grpcwebtext'`|
 |`outDir`| |`{String}`|`'.'`|
 |`extra`|Other configuration options, see `protoc -h`|`{Array.<string>}`|`[]`|
-|`synchronize`|Sync your generated code with `.proto` files each time you run webpack|`{Boolean}`|`true`|
+|`synchronize`|Sync generated codes with `.proto` files each time you run webpack, disable it if you want to keep your generated codes read-only|`{Boolean}`|`true`|
 |`watch`|Watch `.proto` files and recompile whenever they change. Only works if `synchronize` is `true`. (Need to [turn on webpack watch mode](https://webpack.js.org/configuration/watch/#watch) first)|`{Boolean}`|`true`|
 
 **Notice:** `commonjs+dts` and `typescript` importStyle only works with `grpc-web` outputType.
 
 <h2 align="center">Todo</h2>
 
-- [ ] Download `protoc` and `protoc-gen-grpc-web` automatically with specific version.
+- [ ] Download `protoc` and `protoc-gen-grpc-web` automatically with specific version
 - [ ] Support Webpack 5

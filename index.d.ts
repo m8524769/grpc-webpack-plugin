@@ -5,7 +5,7 @@ declare namespace GrpcWebPlugin {
 
   interface Options {
     /**
-     * E.g. `'./protos'`
+     * E.g. `'./protos'`.
      */
     protoPath: string;
     /**
