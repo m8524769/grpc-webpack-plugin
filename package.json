@@ -1,6 +1,6 @@
 {
   "name": "grpc-webpack-plugin",
-  "version": "0.2.71",
+  "version": "0.2.72",
   "description": "A webpack plugin that compiles .proto files automatically with gRPC-Web.",
   "main": "index.js",
   "author": "yk",
