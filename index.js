@@ -43,6 +43,7 @@ class GrpcWebPlugin {
     });
 
     const { options } = this;
+    const logger = compiler.getInfrastructureLogger('GrpcWebPlugin');
 
     let outputOption = '';
     if (options.outputType === 'grpc-web') {
@@ -51,12 +52,16 @@ class GrpcWebPlugin {
       outputOption = `--js_out=import_style=${options.importStyle}:${options.outDir}`;
     }
 
-    // Compile all .proto files during initialization
     if (options.synchronize) {
+      // Compile all .proto files during initialization
       compiler.hooks.afterEnvironment.tap('GrpcWebPlugin', () => {
         if (!fs.existsSync(options.outDir)) {
           fs.mkdirSync(options.outDir, { recursive: true });
         }
+
+        logger.debug(
+          `protoc -I${options.protoPath} ${options.protoFiles.join(' ')} ${outputOption} ${options.extra.join(' ')}`
+        );
 
         cp.spawn('protoc', [
           `-I${options.protoPath}`,
@@ -91,6 +96,10 @@ class GrpcWebPlugin {
           if (!fs.existsSync(options.outDir)) {
             fs.mkdirSync(options.outDir, { recursive: true });
           }
+
+          logger.debug(
+            `protoc -I${options.protoPath} ${changedProtos.join(' ')} ${outputOption} ${options.extra.join(' ')}`
+          );
 
           cp.spawn('protoc', [
             `-I${options.protoPath}`,

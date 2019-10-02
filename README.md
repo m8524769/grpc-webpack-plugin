@@ -19,6 +19,9 @@
   <a href="https://travis-ci.com/m8524769/grpc-webpack-plugin">
     <img alt="Travis (.com)" src="https://img.shields.io/travis/com/m8524769/grpc-webpack-plugin">
   </a>
+  <a href="https://packagephobia.now.sh/result?p=grpc-webpack-plugin">
+    <img alt="install size" src="https://packagephobia.now.sh/badge?p=grpc-webpack-plugin">
+  </a>
   <a href="https://www.npmjs.com/package/grpc-webpack-plugin">
     <img alt="npm" src="https://img.shields.io/npm/dt/grpc-webpack-plugin">
   </a>
@@ -67,7 +70,12 @@ module.exports = {
       mode: 'grpcwebtext',
       outDir: OUT_DIR,
     }),
-  ]
+  ],
+  // In addition, you can add this to debug your options
+  infrastructureLogging: {
+    level: 'error',
+    debug: /GrpcWebPlugin/,
+  },
 });
 ```
 
@@ -89,6 +97,5 @@ module.exports = {
 
 <h2 align="center">Todo</h2>
 
-- [ ] Download `protoc` and `protoc-gen-grpc-web` automatically with specific version
 - [ ] Add some hooks
 - [ ] Support Webpack 5
