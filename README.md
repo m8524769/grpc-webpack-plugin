@@ -61,7 +61,7 @@ module.exports = {
       outDir: OUT_DIR,
     }),
   ],
-  // In addition, you can add this to debug your options
+  // In addition, you can debug your options by adding the following configuration
   // Require webpack>=4.37
   infrastructureLogging: {
     level: 'error',

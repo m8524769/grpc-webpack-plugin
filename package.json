@@ -16,9 +16,6 @@
     "grpc-web",
     "protoc"
   ],
-  "scripts": {
-    "test": "echo \"No test specified\" && exit 0"
-  },
   "engines": {
     "node": ">=10.12.0"
   },

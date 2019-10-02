@@ -62,11 +62,11 @@ class GrpcWebPlugin {
         }
 
         logger.debug(
-          `protoc -I${options.protoPath} ${options.protoFiles.join(' ')} ${outputOption} ${options.extra.join(' ')}`
+          `protoc -I=${options.protoPath} ${options.protoFiles.join(' ')} ${outputOption} ${options.extra.join(' ')}`
         );
 
         cp.spawn('protoc', [
-          `-I${options.protoPath}`,
+          `-I=${options.protoPath}`,
           ...options.protoFiles,
           ...options.extra,
           outputOption,
@@ -100,11 +100,11 @@ class GrpcWebPlugin {
           }
 
           logger.debug(
-            `protoc -I${options.protoPath} ${changedProtos.join(' ')} ${outputOption} ${options.extra.join(' ')}`
+            `protoc -I=${options.protoPath} ${changedProtos.join(' ')} ${outputOption} ${options.extra.join(' ')}`
           );
 
           cp.spawn('protoc', [
-            `-I${options.protoPath}`,
+            `-I=${options.protoPath}`,
             ...changedProtos,
             ...options.extra,
             outputOption,
