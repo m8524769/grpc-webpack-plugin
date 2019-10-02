@@ -72,6 +72,7 @@ module.exports = {
     }),
   ],
   // In addition, you can add this to debug your options
+  // Require webpack>=4.37
   infrastructureLogging: {
     level: 'error',
     debug: /GrpcWebPlugin/,

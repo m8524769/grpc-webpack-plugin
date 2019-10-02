@@ -43,7 +43,9 @@ class GrpcWebPlugin {
     });
 
     const { options } = this;
-    const logger = compiler.getInfrastructureLogger('GrpcWebPlugin');
+    const logger = compiler.getInfrastructureLogger
+      ? compiler.getInfrastructureLogger('GrpcWebPlugin')
+      : console;
 
     let outputOption = '';
     if (options.outputType === 'grpc-web') {
