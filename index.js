@@ -90,9 +90,14 @@ class GrpcWebPlugin {
 
       // Recompile .proto files whenever they change
       compiler.hooks.watchRun.tapAsync('GrpcWebPlugin', (compiler, callback) => {
-        const changedProtos = Object.keys(
-          compiler.watchFileSystem.watcher.mtimes
-        ).filter(filename => filename.endsWith('.proto'));
+        let changedProtos = [];
+        if (compiler.modifiedFiles) {  // Only in Webpack 5
+          changedProtos = Array.from(compiler.modifiedFiles).filter(isProtoFile);
+        } else if (compiler.watchFileSystem.watcher.mtimes) {  // Older versions of watchpack use mtimes
+          changedProtos = Object.keys(
+            compiler.watchFileSystem.watcher.mtimes
+          ).filter(isProtoFile);
+        }
 
         if (changedProtos.length !== 0) {
           if (!fs.existsSync(options.outDir)) {
@@ -125,5 +130,7 @@ class GrpcWebPlugin {
     }
   }
 }
+
+const isProtoFile = filename => filename.endsWith('.proto');
 
 module.exports = GrpcWebPlugin;

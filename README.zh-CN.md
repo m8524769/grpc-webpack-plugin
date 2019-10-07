@@ -86,6 +86,6 @@ module.exports = {
 |`outDir`| |`{String}`|`'.'`|
 |`extra`|其他参数，详见 `protoc -h`|`{Array.<string>}`|`[]`|
 |`synchronize`|使你的 pb 生成代码与 `.proto` 中的定义保持同步，将其设为 `false` 即可使 pb 文件只读|`{Boolean}`|`true`|
-|`watch`|监听 `.proto` 文件，在其更改时重新编译之，只在 `synchronize` 为 `true` 时生效。（需要[打开 webpack 的监听模式](https://webpack.js.org/configuration/watch/#watch)）|`{Boolean}`|`true`|
+|`watch`|监听 `.proto` 文件，在其更改时重新编译之，仅在 `synchronize` 为 `true` 时生效。（需要[打开 webpack 的监听模式](https://webpack.js.org/configuration/watch/#watch)）|`{Boolean}`|`true`|
 
 **注意：** `commonjs+dts` 和 `typescript` 仅适用于 outputType 为 `grpc-web` 的情况。
