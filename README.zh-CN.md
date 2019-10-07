@@ -7,7 +7,7 @@
     <img width="200" height="200" alt="Webpack logo"
       src="https://webpack.js.org/assets/icon-square-big.svg">
   </a>
-  <h1>基啊咯批西 · 歪不派克 · 普拉格因</h1>
+  <h1>基啊咯批西 · 歪不派克 · 噗啦个嘤</h1>
   <p>
     一个基于 <a href="https://github.com/grpc/grpc-web">gRPC-Web</a> 实现自动编译 <code>.proto</code> 文件的 <a href="https://webpack.js.org">webpack</a> 插件。
   </p>
@@ -66,7 +66,7 @@ module.exports = {
     }),
   ],
   // 另外，你可以添加如下配置来调试你的插件参数
-  // 需要 webpack 的版本高于 4.37
+  // 需要 webpack 的版本不低于 v4.37
   infrastructureLogging: {
     level: 'error',
     debug: /GrpcWebPlugin/,
