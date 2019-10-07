@@ -1,5 +1,5 @@
 <div align="right">
-  English | <a href="./README.zh-CN.md">简体中文</a>
+  <a href="./README.md">English</a> | 简体中文
 </div>
 
 <div align="center">
@@ -7,9 +7,9 @@
     <img width="200" height="200" alt="Webpack logo"
       src="https://webpack.js.org/assets/icon-square-big.svg">
   </a>
-  <h1>gRPC Webpack Plugin</h1>
+  <h1>基啊咯批西 · 歪不派克 · 普拉格因</h1>
   <p>
-    A <a href="https://webpack.js.org">webpack</a> plugin that compiles <code>.proto</code> files automatically with <a href="https://github.com/grpc/grpc-web">gRPC-Web</a>.
+    一个基于 <a href="https://github.com/grpc/grpc-web">gRPC-Web</a> 实现自动编译 <code>.proto</code> 文件的 <a href="https://webpack.js.org">webpack</a> 插件。
   </p>
 </div>
 
@@ -21,9 +21,9 @@
   <a href="https://www.npmjs.com/package/grpc-webpack-plugin"><img alt="npm" src="https://img.shields.io/npm/dt/grpc-webpack-plugin" /></a>
 </div>
 
-<h2 align="center">Install</h2>
+<h2 align="center">装他丫的</h2>
 
-**Notice:** Make sure you have [`protoc`](https://github.com/protocolbuffers/protobuf/releases) and [`protoc-gen-grpc-web`](https://github.com/grpc/grpc-web/releases) installed on your OS.
+**注意：** 请确保系统上已装有 [`protoc`](https://github.com/protocolbuffers/protobuf/releases) 和 [`protoc-gen-grpc-web`](https://github.com/grpc/grpc-web/releases)。
 
 ```shell
 npm i --save-dev grpc-webpack-plugin
@@ -33,7 +33,7 @@ npm i --save-dev grpc-webpack-plugin
 yarn add --dev grpc-webpack-plugin
 ```
 
-<h2 align="center">Usage</h2>
+<h2 align="center">这咋用啊？</h2>
 
 **webpack.config.js**
 
@@ -65,8 +65,8 @@ module.exports = {
       outDir: OUT_DIR,
     }),
   ],
-  // In addition, you can debug your options by adding the following configuration
-  // Require webpack>=4.37
+  // 另外，你可以添加如下配置来调试你的插件参数
+  // 需要 webpack 的版本高于 4.37
   infrastructureLogging: {
     level: 'error',
     debug: /GrpcWebPlugin/,
@@ -74,23 +74,18 @@ module.exports = {
 });
 ```
 
-<h2 align="center">Options</h2>
+<h2 align="center">参数</h2>
 
-|Name|Description|Type|Default|
-|:--:|-----------|:--:|:-----:|
-|`protoPath`|Required, e.g. `'./protos'`|`{String}`| |
-|`protoFiles`|Required, e.g. `['foo.proto', 'bar.proto']`|`{Array.<string>}`| |
-|`outputType`|Required, `'js' \| 'grpc-web'`|`{String}`| |
-|`importStyle`|`'closure' \| 'commonjs' \| 'commonjs+dts' \| 'typescript'`, see [Import Style](https://github.com/grpc/grpc-web#import-style)|`{String}`|`'closure'`|
-|`mode`|`'grpcwebtext' \| 'grpcweb'`, see [Wire Format Mode](https://github.com/grpc/grpc-web#wire-format-mode)|`{String}`|`'grpcwebtext'`|
+|参数名|描述|类型|默认值|
+|:----:|----|:--:|:----:|
+|`protoPath`|必填，例：`'./protos'`|`{String}`| |
+|`protoFiles`|必填，例：`['foo.proto', 'bar.proto']`|`{Array.<string>}`| |
+|`outputType`|必填，例：`'js' \| 'grpc-web'`|`{String}`| |
+|`importStyle`|`'closure' \| 'commonjs' \| 'commonjs+dts' \| 'typescript'`，详见 [Import Style](https://github.com/grpc/grpc-web#import-style)|`{String}`|`'closure'`|
+|`mode`|`'grpcwebtext' \| 'grpcweb'`，详见 [Wire Format Mode](https://github.com/grpc/grpc-web#wire-format-mode)|`{String}`|`'grpcwebtext'`|
 |`outDir`| |`{String}`|`'.'`|
-|`extra`|Other configuration options, see `protoc -h`|`{Array.<string>}`|`[]`|
-|`synchronize`|Sync generated codes with `.proto` files each time you run webpack, disable it if you want to keep your generated codes read-only|`{Boolean}`|`true`|
-|`watch`|Watch `.proto` files and recompile whenever they change. Only works if `synchronize` is `true`. (Need to [turn on webpack watch mode](https://webpack.js.org/configuration/watch/#watch) first)|`{Boolean}`|`true`|
+|`extra`|其他参数，详见 `protoc -h`|`{Array.<string>}`|`[]`|
+|`synchronize`|使你的 pb 生成代码与 `.proto` 中的定义保持同步，将其设为 `false` 即可使 pb 文件只读|`{Boolean}`|`true`|
+|`watch`|监听 `.proto` 文件，在其更改时重新编译之，只在 `synchronize` 为 `true` 时生效。（需要[打开 webpack 的监听模式](https://webpack.js.org/configuration/watch/#watch)）|`{Boolean}`|`true`|
 
-**Notice:** `commonjs+dts` and `typescript` importStyle only works with `grpc-web` outputType.
-
-<h2 align="center">Todo</h2>
-
-- [ ] Add some hooks
-- [ ] Support Webpack 5
+**注意：** `commonjs+dts` 和 `typescript` 仅适用于 outputType 为 `grpc-web` 的情况。
