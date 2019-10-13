@@ -61,9 +61,8 @@ class GrpcWebPlugin {
           fs.mkdirSync(options.outDir, { recursive: true });
         }
 
-        logger.debug(
-          `protoc -I=${options.protoPath} ${options.protoFiles.join(' ')} ${outputOption} ${options.extra.join(' ')}`
-        );
+        const debugInfo = `protoc -I=${options.protoPath} ${options.protoFiles.join(' ')} ${outputOption} ${options.extra.join(' ')}`;
+        logger.debug(debugInfo);
 
         cp.spawn('protoc', [
           `-I=${options.protoPath}`,
@@ -73,6 +72,7 @@ class GrpcWebPlugin {
         ], {
           shell: true,
         }).stderr.on('data', error => {
+          logger.error(debugInfo);
           throw new Error(error.toString());
         });
       });
