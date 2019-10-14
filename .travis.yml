@@ -4,8 +4,8 @@ node_js:
   - '10'
 
 env:
-  - PROTOBUF_VERSION=3.10.0
-  - GRPC_WEB_VERSION=1.0.6
+  matrix:
+    - PROTOBUF_VERSION=3.10.0 GRPC_WEB_VERSION=1.0.6
 
 before_install:
   - sudo apt-get install -y autoconf automake libtool
