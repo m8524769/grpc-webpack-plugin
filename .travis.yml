@@ -13,3 +13,4 @@ install:
   - wget https://github.com/grpc/grpc-web/archive/1.0.6.tar.gz
   - tar -xzvf 1.0.6.tar.gz
   - pushd grpc-web-1.0.6 && sudo make install-plugin && popd
+  - yarn
