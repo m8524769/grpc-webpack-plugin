@@ -17,7 +17,7 @@
     "protoc"
   ],
   "scripts": {
-    "test": "echo \"No test specified\" && exit 0"
+    "test": "jest --runInBand --coverage"
   },
   "engines": {
     "node": ">=10.12.0"
@@ -25,7 +25,11 @@
   "dependencies": {
     "command-exists": "^1.2.8"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "jest": "^24.9.0",
+    "rimraf": "^3.0.0",
+    "webpack": "^4.41.1"
+  },
   "peerDependencies": {
     "grpc-web": "^1.0.0",
     "webpack": "^4.0.0"

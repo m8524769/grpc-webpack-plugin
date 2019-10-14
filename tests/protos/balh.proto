@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package balh;
+
+service Balh {
+  rpc Say(stream JA) returns (stream BALH);
+}
+
+message JA {
+  string name = 1;
+  int32 count = 2;
+}
+
+message BALH {
+  string name = 1;
+  int32 count = 2;
+}
