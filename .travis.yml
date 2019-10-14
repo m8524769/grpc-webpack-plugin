@@ -11,17 +11,17 @@ before_install:
   - sudo apt-get install -y autoconf automake libtool
 
 install:
-  - wget https://github.com/protocolbuffers/protobuf/archive/v$PROTOBUF_VERSION.tar.gz
-  - tar -xzvf v$PROTOBUF_VERSION.tar.gz
-  - pushd protobuf-$PROTOBUF_VERSION
+  - wget https://github.com/protocolbuffers/protobuf/archive/v${PROTOBUF_VERSION}.tar.gz
+  - tar -xzvf v${PROTOBUF_VERSION}.tar.gz
+  - pushd protobuf-${PROTOBUF_VERSION}
   - ./autogen.sh && ./configure --prefix=/usr && make && sudo make install && sudo ldconfig
   - popd
-  - wget https://github.com/grpc/grpc-web/archive/$GRPC_WEB_VERSION.tar.gz
-  - tar -xzvf $GRPC_WEB_VERSION.tar.gz
-  - pushd grpc-web-$GRPC_WEB_VERSION && sudo make install-plugin && popd
+  - wget https://github.com/grpc/grpc-web/archive/${GRPC_WEB_VERSION}.tar.gz
+  - tar -xzvf ${GRPC_WEB_VERSION}.tar.gz
+  - pushd grpc-web-${GRPC_WEB_VERSION} && sudo make install-plugin && popd
   - yarn
 
 cache:
   directories:
-    - protobuf-$PROTOBUF_VERSION
-    - grpc-web-$GRPC_WEB_VERSION
+    - protobuf-${PROTOBUF_VERSION}
+    - grpc-web-${GRPC_WEB_VERSION}
