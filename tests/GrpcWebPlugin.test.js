@@ -41,80 +41,90 @@ describe('GrpcWebPlugin', () => {
   it('should generate proto messages (closure)', done => {
     testGrpcWebPlugin({
       protoPath: DIR,
-      protoFiles: ['balh.proto'],
+      protoFiles: ['bella.proto', 'ciao.proto'],
       outputType: 'js',
       importStyle: 'closure',
       outDir: OUT_DIR,
     }, [
-      'ja.js',
-      'balh.js',
+      'bellarequest.js',
+      'bellareply.js',
+      'ciaorequest.js',
+      'ciaoreply.js',
     ], done);
   });
 
   it('should generate proto messages (commonjs)', done => {
     testGrpcWebPlugin({
       protoPath: DIR,
-      protoFiles: ['balh.proto'],
+      protoFiles: ['bella.proto', 'ciao.proto'],
       outputType: 'js',
       importStyle: 'commonjs',
       outDir: OUT_DIR,
     }, [
-      'balh_pb.js',
+      'bella_pb.js',
+      'ciao_pb.js',
     ], done);
   });
 
   it('should generate service client stub (closure)', done => {
     testGrpcWebPlugin({
       protoPath: DIR,
-      protoFiles: ['balh.proto'],
+      protoFiles: ['bella.proto', 'ciao.proto'],
       outputType: 'grpc-web',
       importStyle: 'closure',
       mode: 'grpcwebtext',
       outDir: OUT_DIR,
     }, [
-      'balh_grpc_web_pb.js',
+      'bella_grpc_web_pb.js',
+      'ciao_grpc_web_pb.js',
     ], done);
   });
 
   it('should generate service client stub (commonjs)', done => {
     testGrpcWebPlugin({
       protoPath: DIR,
-      protoFiles: ['balh.proto'],
+      protoFiles: ['bella.proto', 'ciao.proto'],
       outputType: 'grpc-web',
       importStyle: 'commonjs',
       mode: 'grpcwebtext',
       outDir: OUT_DIR,
     }, [
-      'balh_grpc_web_pb.js'
+      'bella_grpc_web_pb.js',
+      'ciao_grpc_web_pb.js',
     ], done);
   });
 
   it('should generate service client stub (commonjs+dts)', done => {
     testGrpcWebPlugin({
       protoPath: DIR,
-      protoFiles: ['balh.proto'],
+      protoFiles: ['bella.proto', 'ciao.proto'],
       outputType: 'grpc-web',
       importStyle: 'commonjs+dts',
       mode: 'grpcwebtext',
       outDir: OUT_DIR,
     }, [
-      'balh_pb.d.ts',
-      'balh_grpc_web_pb.js',
-      'balh_grpc_web_pb.d.ts',
+      'bella_grpc_web_pb.js',
+      'bella_grpc_web_pb.d.ts',
+      'bella_pb.d.ts',
+      'ciao_grpc_web_pb.js',
+      'ciao_grpc_web_pb.d.ts',
+      'ciao_pb.d.ts',
     ], done);
   });
 
   it('should generate service client stub (typescript)', done => {
     testGrpcWebPlugin({
       protoPath: DIR,
-      protoFiles: ['balh.proto'],
+      protoFiles: ['bella.proto', 'ciao.proto'],
       outputType: 'grpc-web',
       importStyle: 'typescript',
       mode: 'grpcwebtext',
       outDir: OUT_DIR,
     }, [
-      'balh_pb.d.ts',
-      'BalhServiceClientPb.ts',
+      'BellaServiceClientPb.ts',
+      'bella_pb.d.ts',
+      'CiaoServiceClientPb.ts',
+      'ciao_pb.d.ts',
     ], done);
   });
 

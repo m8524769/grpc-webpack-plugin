@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package test.ciao;
+
+service Ciao {
+  rpc TestCiao(CiaoRequest) returns (CiaoReply);
+}
+
+message CiaoRequest {
+  string data = 1;
+}
+
+message CiaoReply {
+  int32 code = 1;
+  string message = 2;
+}

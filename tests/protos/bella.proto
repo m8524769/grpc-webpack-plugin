@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package test.bella;
+
+service Bella {
+  rpc TestBella(BellaRequest) returns (BellaReply);
+}
+
+message BellaRequest {
+  string data = 1;
+}
+
+message BellaReply {
+  int32 code = 1;
+  string message = 2;
+}
