@@ -19,7 +19,7 @@ install:
   - wget https://github.com/grpc/grpc-web/archive/${GRPC_WEB_VERSION}.tar.gz
   - tar -xzvf ${GRPC_WEB_VERSION}.tar.gz
   - pushd grpc-web-${GRPC_WEB_VERSION} && sudo make install-plugin && popd
-  - yarn
+  - travis_retry yarn
 
 cache:
   directories:

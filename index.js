@@ -19,6 +19,7 @@ class GrpcWebPlugin {
     /** @type {GrpcWebOptions} */
     const defaultOptions = {
       importStyle: 'closure',
+      binary: false,
       mode: 'grpcwebtext',
       outDir: '.',
       extra: [],
@@ -51,7 +52,7 @@ class GrpcWebPlugin {
     if (options.outputType === 'grpc-web') {
       outputOption = `--grpc-web_out=import_style=${options.importStyle},mode=${options.mode}:${options.outDir}`;
     } else if (options.outputType === 'js') {
-      outputOption = `--js_out=import_style=${options.importStyle}:${options.outDir}`;
+      outputOption = `--js_out=import_style=${options.importStyle}${options.binary ? ',binary' : ''}:${options.outDir}`;
     }
 
     if (options.synchronize) {

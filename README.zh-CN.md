@@ -42,7 +42,7 @@ const GrpcWebPlugin = require('grpc-webpack-plugin');
 
 const path = require('path');
 const DIR = path.resolve(__dirname, './protos');
-const OUT_DIR = path.resolve(__dirname, './protobuf');
+const OUT_DIR = path.resolve(__dirname, './generated');
 
 module.exports = {
   mode: 'development',
@@ -74,17 +74,18 @@ module.exports = {
 });
 ```
 
-<h2 align="center">参数</h2>
+<h2 align="center">选项</h2>
 
-|参数名|描述|类型|默认值|
+|选项名|描述|类型|默认值|
 |:----:|----|:--:|:----:|
 |`protoPath`|必填，例：`'./protos'`|`{String}`| |
 |`protoFiles`|必填，例：`['foo.proto', 'bar.proto']`|`{Array.<string>}`| |
 |`outputType`|必填，例：`'js' \| 'grpc-web'`|`{String}`| |
 |`importStyle`|`'closure' \| 'commonjs' \| 'commonjs+dts' \| 'typescript'`，详见 [Import Style](https://github.com/grpc/grpc-web#import-style)|`{String}`|`'closure'`|
+|`binary`|开启此选项可序列化/反序列化二进制格式的 proto|`{Boolean}`|`false`|
 |`mode`|`'grpcwebtext' \| 'grpcweb'`，详见 [Wire Format Mode](https://github.com/grpc/grpc-web#wire-format-mode)|`{String}`|`'grpcwebtext'`|
 |`outDir`| |`{String}`|`'.'`|
-|`extra`|其他参数，详见 `protoc -h`|`{Array.<string>}`|`[]`|
+|`extra`|其他编译参数，详见 `protoc -h`|`{Array.<string>}`|`[]`|
 |`synchronize`|使你的 pb 生成代码与 `.proto` 中的定义保持同步，将其设为 `false` 即可使 pb 文件只读|`{Boolean}`|`true`|
 |`watch`|监听 `.proto` 文件，在其更改时重新编译之，仅在 `synchronize` 为 `true` 时生效。（需要[打开 webpack 的监听模式](https://webpack.js.org/configuration/watch/#watch)）|`{Boolean}`|`true`|
 

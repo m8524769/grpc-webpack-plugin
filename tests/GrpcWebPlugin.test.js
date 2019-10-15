@@ -7,7 +7,7 @@ const rimraf = require('rimraf');
 const GrpcWebPlugin = require('..');
 
 const DIR = path.resolve(__dirname, './protos');
-const OUT_DIR = path.resolve(__dirname, './protobuf');
+const OUT_DIR = path.resolve(__dirname, './generated');
 
 const testGrpcWebPlugin = (pluginConfig, expectedGeneratedFiles, done) => {
   webpack({
@@ -44,6 +44,7 @@ describe('GrpcWebPlugin', () => {
       protoFiles: ['bella.proto', 'ciao.proto'],
       outputType: 'js',
       importStyle: 'closure',
+      binary: true,
       outDir: OUT_DIR,
     }, [
       'bellarequest.js',
@@ -58,6 +59,7 @@ describe('GrpcWebPlugin', () => {
       protoPath: DIR,
       protoFiles: ['bella.proto', 'ciao.proto'],
       outputType: 'js',
+      binary: true,
       importStyle: 'commonjs',
       outDir: OUT_DIR,
     }, [

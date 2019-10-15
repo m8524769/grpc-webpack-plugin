@@ -42,7 +42,7 @@ const GrpcWebPlugin = require('grpc-webpack-plugin');
 
 const path = require('path');
 const DIR = path.resolve(__dirname, './protos');
-const OUT_DIR = path.resolve(__dirname, './protobuf');
+const OUT_DIR = path.resolve(__dirname, './generated');
 
 module.exports = {
   mode: 'development',
@@ -82,13 +82,42 @@ module.exports = {
 |`protoFiles`|Required, e.g. `['foo.proto', 'bar.proto']`|`{Array.<string>}`| |
 |`outputType`|Required, `'js' \| 'grpc-web'`|`{String}`| |
 |`importStyle`|`'closure' \| 'commonjs' \| 'commonjs+dts' \| 'typescript'`, see [Import Style](https://github.com/grpc/grpc-web#import-style)|`{String}`|`'closure'`|
+|`binary`|Enable it to serialize and deserialize your proto from the protocol buffers binary wire format|`{Boolean}`|`false`|
 |`mode`|`'grpcwebtext' \| 'grpcweb'`, see [Wire Format Mode](https://github.com/grpc/grpc-web#wire-format-mode)|`{String}`|`'grpcwebtext'`|
 |`outDir`| |`{String}`|`'.'`|
-|`extra`|Other configuration options, see `protoc -h`|`{Array.<string>}`|`[]`|
+|`extra`|Other protoc options, see `protoc -h`|`{Array.<string>}`|`[]`|
 |`synchronize`|Sync generated codes with `.proto` files each time you run webpack, disable it if you want to keep your generated codes read-only|`{Boolean}`|`true`|
 |`watch`|Watch `.proto` files and recompile whenever they change. Only works if `synchronize` is `true`. (Need to [turn on webpack watch mode](https://webpack.js.org/configuration/watch/#watch) first)|`{Boolean}`|`true`|
 
 **Notice:** `commonjs+dts` and `typescript` importStyle only works with `grpc-web` outputType.
+
+<h2 align="center">Advanced</h2>
+
+You can compile multiple `.proto` files and put the generated code into separate folders like this:
+
+**webpack.config.js**
+
+```js
+const path = require('path');
+const GrpcWebPlugin = require('grpc-webpack-plugin');
+
+module.exports = {
+  mode: 'development',
+  plugins: [
+    ...['foo', 'bar', 'baz'].map(
+      protoName =>
+        new GrpcWebPlugin({
+          protoPath: path.resolve(__dirname, './protos'),
+          protoFiles: [`${protoName}.proto`],
+          outputType: 'grpc-web',
+          importStyle: 'typescript',
+          mode: 'grpcwebtext',
+          outDir: path.join(__dirname, 'generated', protoName),
+        })
+    ),
+  ],
+};
+```
 
 <h2 align="center">Todo</h2>
 

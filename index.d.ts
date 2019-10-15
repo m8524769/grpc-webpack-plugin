@@ -22,6 +22,11 @@ declare namespace GrpcWebPlugin {
      */
     importStyle?: ImportStyleType;
     /**
+     * Enable it to serialize and deserialize your proto from the protocol buffers binary wire format.
+     * Default: `false`.
+     */
+    binary?: boolean;
+    /**
      * See [Wire Format Mode](https://github.com/grpc/grpc-web#wire-format-mode).
      * Default: `grpcwebtext`.
      */
