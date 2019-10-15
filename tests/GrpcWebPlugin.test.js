@@ -59,8 +59,8 @@ describe('GrpcWebPlugin', () => {
       protoPath: DIR,
       protoFiles: ['bella.proto', 'ciao.proto'],
       outputType: 'js',
-      binary: true,
       importStyle: 'commonjs',
+      binary: true,
       outDir: OUT_DIR,
     }, [
       'bella_pb.js',

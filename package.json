@@ -19,6 +19,10 @@
   "scripts": {
     "test": "jest --runInBand --coverage"
   },
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
   "engines": {
     "node": ">=10.12.0"
   },
