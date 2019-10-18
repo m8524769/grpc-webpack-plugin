@@ -53,6 +53,7 @@ module.exports = {
       protoFiles: ['echo.proto'],
       outputType: 'js',
       importStyle: 'commonjs',
+      binary: true,
       outDir: OUT_DIR,
     }),
     // Service client stub

@@ -53,6 +53,7 @@ module.exports = {
       protoFiles: ['echo.proto'],
       outputType: 'js',
       importStyle: 'commonjs',
+      binary: true,
       outDir: OUT_DIR,
     }),
     // Service client stub
@@ -98,11 +99,7 @@ You can compile multiple `.proto` files and put the generated code into separate
 **webpack.config.js**
 
 ```js
-const path = require('path');
-const GrpcWebPlugin = require('grpc-webpack-plugin');
-
 module.exports = {
-  mode: 'development',
   plugins: [
     ...['foo', 'bar', 'baz'].map(
       protoName =>
