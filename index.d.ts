@@ -56,7 +56,7 @@ declare namespace GrpcWebPlugin {
 
 declare class GrpcWebPlugin {
   constructor(options: GrpcWebPlugin.Options);
-  apply(compiler: Compiler): void;
+  apply(compiler): void;
 }
 
 export = GrpcWebPlugin;
