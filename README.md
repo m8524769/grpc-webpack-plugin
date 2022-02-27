@@ -16,7 +16,7 @@
 <div align="center">
   <a href="https://www.npmjs.com/package/grpc-webpack-plugin"><img alt="npm" src="https://img.shields.io/npm/v/grpc-webpack-plugin" /></a>
   <a href="https://nodejs.org"><img alt="node" src="https://img.shields.io/node/v/grpc-webpack-plugin" /></a>
-  <a href="https://travis-ci.com/m8524769/grpc-webpack-plugin"><img alt="Travis (.com)" src="https://img.shields.io/travis/com/m8524769/grpc-webpack-plugin" /></a>
+  <a href="https://app.travis-ci.com/github/m8524769/grpc-webpack-plugin"><img alt="travis status" src="https://app.travis-ci.com/m8524769/grpc-webpack-plugin.svg?branch=master" /></a>
   <a href="https://packagephobia.now.sh/result?p=grpc-webpack-plugin"><img alt="install size" src="https://packagephobia.now.sh/badge?p=grpc-webpack-plugin" /></a>
   <a href="https://www.npmjs.com/package/grpc-webpack-plugin"><img alt="npm" src="https://img.shields.io/npm/dt/grpc-webpack-plugin" /></a>
 </div>
